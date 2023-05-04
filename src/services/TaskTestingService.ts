@@ -34,6 +34,10 @@ export class TaskTestingService {
     }
 
     doesTaskNeedArchiving(task: Block) {
+        if (this.isTaskHandledByRule(task.text)){
+            return true;
+        }
+        
         if (!this.isCheckedTask(task.text)) {
             return false;
         }
@@ -57,7 +61,6 @@ export class TaskTestingService {
             return true;
         }
 
-        return this.isTaskHandledByRule(task.text);
     }
 
     private isTaskHandledByRule(text: string) {
